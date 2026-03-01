@@ -11,11 +11,12 @@ export const getUserById = async (id) => {
   return await users.find(user => user.id === id);
 };
 
-export const createUser = async (newUser) => {
+export const createNewUser = async (newUser) => {
     const response = await fetch('https://dummyjson.com/users/add', {
         method: 'POST',
         headers: {'Content-Type': 'application/json' },
         body: JSON.stringify({ 
+            id: newUser.id, 
             firstName: newUser.firstName,
             lastName: newUser.lastName,
             age: newUser.age,
@@ -27,4 +28,16 @@ export const createUser = async (newUser) => {
     );
     const data = await response.json();
     return data;
+}
+
+/* */
+
+export const deleteUser = async (id) => {
+    const response = await fetch(`https://dummyjson.com/users/${id}`, {
+        method: 'DELETE',
+     });
+     const data = await response.json();
+     console.log(data)
+     return data
+     
 }
