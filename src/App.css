@@ -7,5 +7,12 @@
 
 .newCard {
   display: grid;
-  grid-template-columns: 1fr 1fr; 
+  grid-template-columns: 1fr 1fr;
+}
+
+.userList {
+  align-items: center;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
 }

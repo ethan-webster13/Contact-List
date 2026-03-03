@@ -51,7 +51,7 @@ const Users =  () => {
   return (
     <div>
       <Typography variant="h2">Users</Typography>
-      <List>
+      <List className='userList'>
         {users.map(user => (
           <ListItem key={user.id} sx={{ width: '400px' }}>
             <UserDetails  user={user} onDelete={handleDelete}/>
