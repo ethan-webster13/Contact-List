@@ -5,3 +5,7 @@
   text-align: center;
 }
 
+.newCard {
+  display: grid;
+  grid-template-columns: 1fr 1fr; 
+}

@@ -27,7 +27,7 @@ const Users =  () => {
     
 
     const handleDelete = async (id) => {
-      let deleted = await deleteUser(id);// response isDeleted true
+      let deleted = await deleteUser(id);
         console.log(deleted.id);
       const updated = users.filter(user => user.id !== deleted.id);
       setUsers(updated)      
@@ -36,7 +36,7 @@ const Users =  () => {
      
 
 
-//get all the users, filter user =>
+
 
     const handleCreate =  async (newUser) => {
        const response = await createNewUser(newUser);

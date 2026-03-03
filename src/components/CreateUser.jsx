@@ -7,7 +7,21 @@ const CreateUser = ({ newId, onAdd } ) => {
     const [phone, setPhone] = useState('');
     const [gender, setGender] = useState('');
     const [birthDate, setBirthDate] = useState('')
-    //age phone gender bd
+    
+    //Validation Checks
+    const phoneRegex = /^[0-9]{3}-[0-9]{3}-[0-9]{4}$/;
+    
+
+    const isPhoneValid = phoneRegex.test([phone])
+    const isAgeValid = age >= 13 && age <100;
+    const isNameValid = (firstName.length > 2 && lastName.length > 2)
+
+    //const isPhoneValid = 
+
+    console.log('Phone is: ' +isPhoneValid)
+   
+
+    
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -21,7 +35,15 @@ const CreateUser = ({ newId, onAdd } ) => {
             birthDate: birthDate
         }
         onAdd(newUser)
-        console.log(newUser.id)
+
+        setFirstName('');
+        setLastName('');
+        setAge('');
+        setPhone('');
+        setGender('');
+        setBirthDate('');
+        
+        console.log(newUser.id) //making sure id is being passed properly
         }
     
 
