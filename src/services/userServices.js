@@ -37,7 +37,27 @@ export const deleteUser = async (id) => {
         method: 'DELETE',
      });
      const data = await response.json();
-     console.log(data)
      return data
      
+}
+
+export const editUser = async (id, updatedUser) => {
+    const response = await fetch(`https://dummyjson.com/users/${id}`, { 
+        method: 'PUT',
+         headers: { 'Content-Type': 'application/json' },
+         body: JSON.stringify({ 
+            id: updatedUser.id, 
+            firstName: updatedUser.firstName,
+            lastName: updatedUser.lastName,
+            age: updatedUser.age,
+            phone: updatedUser.phone,
+            gender: updatedUser.gender,
+            birthDate: updatedUser.birthDate
+         })
+    }
+        
+     )
+     const data = await response.json();
+     return data;
+
 }

@@ -1,12 +1,14 @@
 import { useEffect, useState } from 'react';
 import { List, ListItem, Typography } from '@mui/material';
 import './services/userServices.js';
-import { getUsers, deleteUser, createNewUser } from './services/userServices.js';
+import { getUsers, deleteUser, createNewUser, editUser } from './services/userServices.js';
 import UserDetails from './components/UserDetails.jsx';
 import CreateUser from './components/CreateUser.jsx';
+import EditUser from './components/EditUser.jsx';
 
 const Users =  () => {
     const [users, setUsers] = useState([])
+    const [editId, setEditId] = useState(null)
 
   const currentHighestId = users.length > 0 
   ? Math.max(...users.map(u => Number(u.id))) 
@@ -34,10 +36,6 @@ const Users =  () => {
     }
     
      
-
-
-
-
     const handleCreate =  async (newUser) => {
        const response = await createNewUser(newUser);
        const userWithCorrectId = {   ...response, id: newUser.id  };
@@ -45,19 +43,30 @@ const Users =  () => {
        if (newUser) setUsers((prevUsers)=>[...prevUsers, userWithCorrectId])
 
     }
-    
-
+    //conditional to show regular user, or <editUser Card>
+    const handleEdit =  (id) => {
+      setEditId(id);
+  
+    }
+    //need handle save
+//edit id must exist in order to map through users
 
   return (
     <div>
       <Typography variant="h2">Users</Typography>
       <List className='userList'>
-        {users.map(user => (
+
+        {editId == null ? users.map(user => (
           <ListItem key={user.id} sx={{ width: '400px' }}>
-            <UserDetails  user={user} onDelete={handleDelete}/>
+            <UserDetails  user={user} onEdit={handleEdit} onDelete={handleDelete}/>
           </ListItem>
-        ))}
-          <CreateUser newId={nextId} onAdd={handleCreate}/>
+        )) 
+      : <ListItem key={user.id} u>
+          <EditUser user={users} />
+        </ListItem>}
+
+      <CreateUser newId={nextId} onAdd={handleCreate}/>
+
       </List>
 
     </div>
