@@ -30,6 +30,7 @@ export const createNewUser = async (newUser) => {
     return data;
 }
 
+/*
 export const editUser = async (id, upUser) => {
     const response = await fetch(`https://dummyjson.com/users/${id}`, {
         method: 'PUT',
@@ -40,7 +41,7 @@ export const editUser = async (id, upUser) => {
     return data;
 }
 
-/* */
+ */
 
 export const deleteUser = async (id) => {
     const response = await fetch(`https://dummyjson.com/users/${id}`, {
