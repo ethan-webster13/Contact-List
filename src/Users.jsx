@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { List, ListItem, Typography } from '@mui/material';
 import './services/userServices.js';
-import { getUsers, deleteUser, createNewUser } from './services/userServices.js';
+import { getUsers, deleteUser, createNewUser, editUser } from './services/userServices.js';
 import UserDetails from './components/UserDetails.jsx';
 import CreateUser from './components/CreateUser.jsx';
 
@@ -18,13 +18,20 @@ const Users =  () => {
         const data = await getUsers();
         setUsers(data)
 
-    }
-    
+    }    
 
     useEffect(()=>{
         fetchUsers();      
     },[])
     
+
+    const handleEdit = async (id, preUser) => {
+      let edited = await editUser(id);
+      const updated = { ...[preUser, edited]}
+      console.log(updated)
+      
+
+    }
 
     const handleDelete = async (id) => {
       let deleted = await deleteUser(id);// response isDeleted true
@@ -54,7 +61,7 @@ const Users =  () => {
       <List className='userList'>
         {users.map(user => (
           <ListItem key={user.id} sx={{ width: '400px' }}>
-            <UserDetails  user={user} onDelete={handleDelete}/>
+            <UserDetails  user={user} onDelete={handleDelete} onEdit={handleEdit} />
           </ListItem>
         ))}
           <CreateUser newId={nextId} onAdd={handleCreate}/>

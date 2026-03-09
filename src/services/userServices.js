@@ -30,6 +30,16 @@ export const createNewUser = async (newUser) => {
     return data;
 }
 
+export const editUser = async (id, upUser) => {
+    const response = await fetch(`https://dummyjson.com/users/${id}`, {
+        method: 'PUT',
+        headers: {'Content-Type': 'application/json' },
+        body: JSON.stringify({ upUser }),        
+    })
+    const data = await response.json();
+    return data;
+}
+
 /* */
 
 export const deleteUser = async (id) => {

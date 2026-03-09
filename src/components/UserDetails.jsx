@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, Typography, Card, CardContent, CardActions } from '@mui/material'
 
 
-const UserDetails = ({ user, onDelete }) => {
+const UserDetails = ({ user, onDelete, onEdit }) => {
 
 
   return (
@@ -20,7 +20,7 @@ const UserDetails = ({ user, onDelete }) => {
             <Typography  color='text.secondary'>
                 Birth Date: {user.birthDate}
             </Typography>
-            <Button sx={{marginRight: '5px'}}>Edit</Button>
+            <Button onClick={()=>onEdit(user.id)} sx={{marginRight: '5px'}}>Edit</Button>
             <Button onClick={() =>onDelete(user.id)}>Delete</Button>
             <CardActions>
 

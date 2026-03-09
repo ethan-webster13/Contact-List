@@ -16,7 +16,7 @@ function App() {
         <Route exact path="/users" element={<Users />} />
         {/*
         <Route path="/todos/:id" element={<UserCard />} />
-        <Route path="/todos/new" element={<CreateUser />} />
+        <Route path="/users/new" element={<CreateUser />} />
         <Route path="/todos/:id/edit" element={<EditUser />} />
 
         */}

@@ -8,9 +8,9 @@ const CreateUser = ({ newId, onAdd } ) => {
     const [gender, setGender] = useState('');
     const [birthDate, setBirthDate] = useState('')
 
-    const [month, setMonth] = useState(null)
-    const [day, setDay] = useState(null);
-    const [year, setYear] = useState(null)
+    const [month, setMonth] = useState('')
+    const [day, setDay] = useState('');
+    const [year, setYear] = useState('')
  
     //age phone gender bd
     useEffect(()=> {
@@ -38,7 +38,7 @@ const CreateUser = ({ newId, onAdd } ) => {
         //const emailRegex = ;
         const isNameValid = (firstName.length > 0 && lastName.length > 0)
         const isPhoneValid = phoneRegex.test(phone) ;
-        const isAgeValid = age >13 && age <100
+        const isAgeValid = age >13 && age <100 && age !==NaN
 
 
             if (isNameValid && isAgeValid)
@@ -68,15 +68,7 @@ const CreateUser = ({ newId, onAdd } ) => {
             setPhone(cleanedPhone)
         }
 
-        const handleBirthDate = (e) => {
-
-
-            
-
-           
-
-        }
-
+       
         const months = [];
             for (let m = 1; m <= 12; m++) {
                 months.push(<option key={m} value={m}>{m}</option>)
@@ -121,20 +113,21 @@ const CreateUser = ({ newId, onAdd } ) => {
                     <option value={'Prefer not to say'}>Prefer not to say</option>
                 </select>
                 
-                <label>Birth Date:</label>
-                    {/*<input value={birthDate} onChange={(e)=>setBirthDate(e.target.value)} />*/}
-
+                <label style={{gridColumn: 'span 2'}}>Birth Date:</label>
+                
+                <label>Month:</label>
                 <select value={month} onChange={(e)=> setMonth(e.target.value)}>
                     <option value=""></option>
                     {months}
               
 
                 </select>
-
+                <label>Days:</label>
                 <select value={day} onChange={(e)=>setDay(e.target.value)}>
                     <option value="" ></option>
                     {days}
                 </select> 
+                <label>Years:</label>
 
                 <select value={year} onChange={(e)=> setYear(e.target.value)}>
                     <option value=""></option>
