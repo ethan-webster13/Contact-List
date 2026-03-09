@@ -20,10 +20,10 @@ const UserDetails = ({ user, onDelete, onEdit }) => {
             <Typography  color='text.secondary'>
                 Birth Date: {user.birthDate}
             </Typography>
-            <Button onClick={()=>onEdit(user.id)} sx={{marginRight: '5px'}}>Edit</Button>
-            <Button onClick={() =>onDelete(user.id)}>Delete</Button>
+            
             <CardActions>
-
+                <Button onClick={()=>onEdit(user.id, user)} sx={{marginRight: '5px'}}>Edit</Button>
+                <Button onClick={() =>onDelete(user.id)}>Delete</Button>
             </CardActions>
         </CardContent>
     </Card>

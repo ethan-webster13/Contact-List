@@ -8,9 +8,22 @@ const CreateUser = ({ newId, onAdd } ) => {
     const [gender, setGender] = useState('');
     const [birthDate, setBirthDate] = useState('')
 
-    const [month, setMonth] = useState('')
-    const [day, setDay] = useState('');
-    const [year, setYear] = useState('')
+    const [month, setMonth] = useState(null)
+    const [day, setDay] = useState(null);
+    const [year, setYear] = useState(null);
+
+    const resetForm = () => {
+        setFirstName('');
+        setLastName('');
+        setAge('');
+        setPhone('');
+        setGender('');
+        setDay('');
+        setMonth('');
+        setYear('');
+        setBirthDate('')
+
+    }   
  
     //age phone gender bd
     useEffect(()=> {
@@ -42,9 +55,13 @@ const CreateUser = ({ newId, onAdd } ) => {
 
 
             if (isNameValid && isAgeValid)
+                {
+                    onAdd(newUser);
+                    resetForm();
+                }
 
-             onAdd(newUser)
-                console.log(isPhoneValid)
+             
+                console.log(isPhoneValid);
         }
 
         const handlePhoneChange = (e) => {
@@ -68,7 +85,6 @@ const CreateUser = ({ newId, onAdd } ) => {
             setPhone(cleanedPhone)
         }
 
-       
         const months = [];
             for (let m = 1; m <= 12; m++) {
                 months.push(<option key={m} value={m}>{m}</option>)
@@ -114,23 +130,22 @@ const CreateUser = ({ newId, onAdd } ) => {
                 </select>
                 
                 <label style={{gridColumn: 'span 2'}}>Birth Date:</label>
-                
-                <label>Month:</label>
+                    {/*<input value={birthDate} onChange={(e)=>setBirthDate(e.target.value)} />*/}
+                Months: 
                 <select value={month} onChange={(e)=> setMonth(e.target.value)}>
-                    <option value=""></option>
+                    <option value="">Month</option>
                     {months}
               
 
                 </select>
-                <label>Days:</label>
+                Days:   
                 <select value={day} onChange={(e)=>setDay(e.target.value)}>
-                    <option value="" ></option>
+                    <option value="" >Day</option>
                     {days}
                 </select> 
-                <label>Years:</label>
-
+                Years
                 <select value={year} onChange={(e)=> setYear(e.target.value)}>
-                    <option value=""></option>
+                    <option value="">Year</option>
                     {yearOptions}
 
                 </select>
